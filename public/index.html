@@ -1,0 +1,41 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidi Amadou Tijan Gassama</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<ul>
+<!-- center image in center od page -->
+<img src="images/sidi.png" width="20%" />
+
+
+
+    <div class="container">
+        <h1>Sagesses de Sidi Amadou Tijan Gassama</h1>
+        <div id="citation-container">
+            <p id="citation">Cliquez sur le bouton pour obtenir une citation du Sidi...</p>
+        </div>
+        <button id="nouvelle-citation" onclick="obtenirNouvelleCitation()">Nouvelle Citation</button>
+    </div>
+</ul>
+    <script src="app.js"></script>
+    <script>
+        // Fonction pour obtenir une nouvelle citation
+        function obtenirNouvelleCitation() {
+            // Faire une requête au serveur pour obtenir une nouvelle citation
+            fetch('/citation')
+                .then(response => response.json())
+                .then(data => {
+                    // Mettre à jour le contenu de la citation dans le DOM
+                    document.getElementById('citation').textContent = data.citation;
+                })
+                .catch(error => console.error('Erreur lors de la récupération de la citation', error));
+        }
+    </script>
+</body>
+</html>
